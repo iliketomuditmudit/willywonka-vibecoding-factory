@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonka's Vibe-Coding Factory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wonka-purple: #5B2C8E;
+            --wonka-purple-dark: #3D1A6E;
+            --wonka-gold: #D4A017;
+            --wonka-gold-light: #F5D060;
+            --wonka-cream: #FFF8E7;
+            --wonka-brown: #4A2C2A;
+            --wonka-green: #2E7D4F;
+            --wonka-red: #C0392B;
+            --wonka-pink: #E8A0BF;
+            --gumball-size: 50px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--wonka-cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============ FLOATING CANDY BACKGROUND ============ */
+        .candy-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .candy-bg .candy {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.15;
+            animation: floatCandy linear infinite;
+        }
+        @keyframes floatCandy {
+            0% { transform: translateY(110vh) rotate(0deg); }
+            100% { transform: translateY(-10vh) rotate(720deg); }
+        }
+
+        /* ============ HEADER ============ */
+        header {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, var(--wonka-purple-dark) 0%, var(--wonka-purple) 50%, #7B4BAA 100%);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(91, 44, 142, 0.4);
+            border-bottom: 4px solid var(--wonka-gold);
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--wonka-gold-light);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+        header p {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: var(--wonka-pink);
+            font-size: 1.15rem;
+            margin-top: 8px;
+        }
+        .golden-ticket-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 20px;
+            background: linear-gradient(135deg, var(--wonka-gold), var(--wonka-gold-light));
+            color: var(--wonka-brown);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 10px rgba(212, 160, 23, 0.4);
+        }
+
+        /* ============ MAIN CONTAINER ============ */
+        .container {
+            position: relative;
+            z-index: 5;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* ============ PHASE PANELS ============ */
+        .phase {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+        .phase.active { display: block; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ GUMBALL MACHINE ============ */
+        .gumball-machine {
+            text-align: center;
+            margin: 20px auto;
+        }
+        .machine-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .machine-globe {
+            width: 320px;
+            height: 340px;
+            background: radial-gradient(circle at 40% 35%, rgba(255,255,255,0.5), rgba(255,255,255,0.05));
+            border: 6px solid #888;
+            border-radius: 50% 50% 10% 10%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            gap: 6px;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .gumball {
+            width: var(--gumball-size);
+            height: var(--gumball-size);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.2), inset 3px 3px 8px rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: gumballBob ease-in-out infinite;
+        }
+        .gumball:hover {
+            transform: scale(1.2);
+            z-index: 10;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.2), inset 3px 3px 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.5);
+        }
+        @keyframes gumballBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .machine-base {
+            width: 200px;
+            height: 80px;
+            background: linear-gradient(to bottom, #C0392B, #922B21);
+            margin: -10px auto 0;
+            border-radius: 5px 5px 15px 15px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .machine-base::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--wonka-gold);
+            border-radius: 50%;
+            border: 3px solid var(--wonka-brown);
+            box-shadow: 0 0 10px rgba(212,160,23,0.5);
+        }
+        .machine-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--wonka-purple);
+            margin-top: 20px;
+            font-weight: 700;
+        }
+        .machine-sublabel {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* ============ IDEA REVEAL PHASE ============ */
+        .golden-ticket {
+            background: linear-gradient(135deg, #F9E547, #D4A017, #F5D060, #D4A017);
+            border: 3px solid var(--wonka-brown);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 30px auto;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(212,160,23,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .golden-ticket::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+        .golden-ticket h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--wonka-brown);
+            position: relative;
+            z-index: 1;
+        }
+        .golden-ticket .idea-text {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            color: var(--wonka-brown);
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+        .golden-ticket .idea-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--wonka-purple-dark);
+            margin: 10px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ INPUT MODE (MVP typed input) ============ */
+        .input-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 2px solid var(--wonka-gold);
+            text-align: center;
+        }
+        .input-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--wonka-purple);
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        .input-section p {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .idea-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .idea-input:focus {
+            border-color: var(--wonka-purple);
+        }
+        .idea-input::placeholder {
+            color: #bbb;
+            font-style: italic;
+        }
+
+        /* ============ BUTTONS ============ */
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            margin-top: 15px;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--wonka-gold), var(--wonka-gold-light));
+            color: var(--wonka-brown);
+            box-shadow: 0 4px 15px rgba(212,160,23,0.4);
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212,160,23,0.5);
+        }
+        .btn-purple {
+            background: linear-gradient(135deg, var(--wonka-purple), var(--wonka-purple-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(91,44,142,0.4);
+        }
+        .btn-purple:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(91,44,142,0.5);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ============ LOADING / FACTORY PHASE ============ */
+        .factory-loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .factory-loading h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--wonka-purple);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .factory-loading .subtitle {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        /* Conveyor belt animation */
+        .conveyor {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .conveyor-belt {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20px;
+            background: repeating-linear-gradient(90deg, #555 0px, #555 30px, #777 30px, #777 60px);
+            animation: beltMove 1s linear infinite;
+            border-radius: 4px;
+        }
+        @keyframes beltMove {
+            from { background-position: 0 0; }
+            to { background-position: 60px 0; }
+        }
+        .conveyor-item {
+            position: absolute;
+            bottom: 25px;
+            font-size: 40px;
+            animation: moveAcross 3s linear infinite;
+        }
+        @keyframes moveAcross {
+            from { left: -60px; }
+            to { left: calc(100% + 60px); }
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: 80%;
+            max-width: 500px;
+            height: 24px;
+            background: #eee;
+            border-radius: 12px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 2px solid var(--wonka-gold);
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--wonka-purple), var(--wonka-gold), var(--wonka-green));
+            background-size: 200% 100%;
+            animation: progressShimmer 2s linear infinite;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        @keyframes progressShimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+        .loading-message {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            color: var(--wonka-purple);
+            min-height: 30px;
+            margin-top: 15px;
+        }
+
+        /* ============ RESULT PHASE ============ */
+        .result-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .result-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--wonka-purple);
+            font-size: 2rem;
+        }
+        .result-header p {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: #888;
+        }
+        .result-frame {
+            background: white;
+            border: 4px solid var(--wonka-gold);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+            position: relative;
+        }
+        .result-frame-header {
+            background: linear-gradient(135deg, var(--wonka-purple-dark), var(--wonka-purple));
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .result-frame-header .app-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--wonka-gold-light);
+            font-size: 1.1rem;
+        }
+        .result-frame-header .dots {
+            display: flex;
+            gap: 6px;
+        }
+        .result-frame-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .result-frame-header .dot:nth-child(1) { background: #E74C3C; }
+        .result-frame-header .dot:nth-child(2) { background: var(--wonka-gold); }
+        .result-frame-header .dot:nth-child(3) { background: var(--wonka-green); }
+
+        .result-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        .result-actions {
+            text-align: center;
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============ OOMPA LOOMPA FOOTER ============ */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: var(--wonka-purple-dark);
+            color: var(--wonka-pink);
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .machine-globe { width: 260px; height: 280px; padding: 20px; }
+            .gumball { width: 40px; height: 40px; font-size: 0.6rem; }
+            .golden-ticket { padding: 25px; }
+            .golden-ticket h2 { font-size: 1.4rem; }
+            .golden-ticket .idea-name { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating candy background -->
+<div class="candy-bg" id="candyBg"></div>
+
+<!-- Header -->
+<header>
+    <h1>Wonka's Vibe-Coding Factory</h1>
+    <p>"A little nonsense now and then is relished by the wisest men."</p>
+    <div class="golden-ticket-badge">GOLDEN TICKET EXPERIENCE</div>
+</header>
+
+<div class="container">
+
+    <!-- ========== PHASE 1: Gumball Machine ========== -->
+    <div class="phase active" id="phase-gumball">
+        <div class="gumball-machine">
+            <div class="machine-wrapper">
+                <div class="machine-globe" id="gumballGlobe">
+                    <!-- Gumballs injected by JS -->
+                </div>
+                <div class="machine-base"></div>
+            </div>
+            <div class="machine-label">Pick Your Idea From the Machine!</div>
+            <div class="machine-sublabel">Click a gumball to reveal your B2B SaaS destiny</div>
+        </div>
+
+        <div class="input-section">
+            <h3>...or Tell Reachy Your Idea</h3>
+            <p>Describe your idea and our robot will find the closest match</p>
+            <input type="text" class="idea-input" id="ideaInput"
+                   placeholder="e.g. A tool that summarizes meetings...">
+            <br>
+            <button class="btn btn-purple" id="submitIdea" onclick="handleTypedIdea()">
+                Feed to Reachy
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== PHASE 2: Idea Reveal (Golden Ticket) ========== -->
+    <div class="phase" id="phase-reveal">
+        <div class="golden-ticket">
+            <h2>Your Golden Ticket</h2>
+            <div class="idea-name" id="revealName"></div>
+            <div class="idea-text" id="revealText"></div>
+        </div>
+        <div style="text-align: center;">
+            <button class="btn btn-gold" onclick="startFactory()">
+                Send to the Factory!
+            </button>
+            <br>
+            <button class="btn btn-purple" style="margin-top:10px; font-size: 0.9rem; padding: 10px 24px;"
+                    onclick="goBack()">
+                Pick a Different Idea
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== PHASE 3: Factory Loading ========== -->
+    <div class="phase" id="phase-loading">
+        <div class="factory-loading">
+            <h2>The Oompa Loompas Are Coding...</h2>
+            <div class="subtitle">Please stand by while the factory works its magic</div>
+
+            <div class="conveyor">
+                <div class="conveyor-item" style="animation-delay: 0s;">🍬</div>
+                <div class="conveyor-item" style="animation-delay: 1s;">🍫</div>
+                <div class="conveyor-item" style="animation-delay: 2s;">🧁</div>
+                <div class="conveyor-belt"></div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="loading-message" id="loadingMessage"></div>
+        </div>
+    </div>
+
+    <!-- ========== PHASE 4: Result Display ========== -->
+    <div class="phase" id="phase-result">
+        <div class="result-header">
+            <h2>Fresh From the Factory!</h2>
+            <p id="resultSubtitle"></p>
+        </div>
+        <div class="result-frame">
+            <div class="result-frame-header">
+                <div class="dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <span class="app-name" id="resultAppName"></span>
+            </div>
+            <iframe class="result-iframe" id="resultIframe" sandbox="allow-scripts allow-modals"></iframe>
+        </div>
+        <div class="result-actions">
+            <button class="btn btn-gold" onclick="openFullscreen()">View Fullscreen</button>
+            <button class="btn btn-purple" onclick="resetFactory()">Try Another Idea</button>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    "We are the music makers, and we are the dreamers of dreams." &mdash; Wonka's Vibe-Coding Factory
+</footer>
+
+<script>
+    // ============ STATE ============
+    let allIdeas = [];
+    let selectedIdea = null;
+    let generatedHTML = '';
+
+    const GUMBALL_COLORS = [
+        '#E74C3C', '#3498DB', '#2ECC71', '#F39C12', '#9B59B6',
+        '#1ABC9C', '#E67E22', '#E84393', '#0984E3', '#6C5CE7',
+        '#00B894', '#FDCB6E', '#E17055', '#74B9FF', '#A29BFE',
+        '#FF7675', '#55EFC4', '#FFEAA7', '#DDA0DD', '#81ECEC',
+    ];
+
+    const LOADING_MESSAGES = [
+        "Mixing the chocolate rivers of code...",
+        "The Oompa Loompas are debating variable names...",
+        "Spinning sugar into CSS animations...",
+        "Wrapping functions in golden foil...",
+        "Taste-testing the user interface...",
+        "Polishing the everlasting gobstopper of UX...",
+        "Feeding the code through the taffy puller...",
+        "Sprinkling responsive design dust...",
+        "The fizzy lifting drinks are compiling...",
+        "Almost there... just adding the cherry on top...",
+        "The snozzberries taste like snozzberries!",
+        "Wonka-vision is rendering your app...",
+    ];
+
+    // ============ INIT ============
+    document.addEventListener('DOMContentLoaded', () => {
+        createCandyBackground();
+        loadIdeas();
+
+        // Enter key on input
+        document.getElementById('ideaInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleTypedIdea();
+        });
+    });
+
+    function createCandyBackground() {
+        const bg = document.getElementById('candyBg');
+        const candies = ['🍬', '🍭', '🍫', '🧁', '🍩', '🎂', '🍪', '🍰'];
+        for (let i = 0; i < 20; i++) {
+            const candy = document.createElement('div');
+            candy.className = 'candy';
+            candy.textContent = candies[i % candies.length];
+            candy.style.left = Math.random() * 100 + '%';
+            candy.style.animationDuration = (15 + Math.random() * 20) + 's';
+            candy.style.animationDelay = (Math.random() * 15) + 's';
+            candy.style.fontSize = (18 + Math.random() * 20) + 'px';
+            bg.appendChild(candy);
+        }
+    }
+
+    async function loadIdeas() {
+        try {
+            const res = await fetch('/api/ideas');
+            allIdeas = await res.json();
+            renderGumballs();
+        } catch (e) {
+            console.error('Failed to load ideas:', e);
+            // Fallback: still allow typed input
+        }
+    }
+
+    function renderGumballs() {
+        const globe = document.getElementById('gumballGlobe');
+        globe.innerHTML = '';
+        allIdeas.forEach((idea, i) => {
+            const ball = document.createElement('div');
+            ball.className = 'gumball';
+            ball.style.backgroundColor = GUMBALL_COLORS[i % GUMBALL_COLORS.length];
+            ball.style.animationDuration = (2 + Math.random() * 2) + 's';
+            ball.style.animationDelay = (Math.random() * 2) + 's';
+            ball.title = 'Click to pick this idea!';
+            ball.textContent = idea.id;
+            ball.onclick = () => selectGumball(idea);
+            globe.appendChild(ball);
+        });
+    }
+
+    // ============ GUMBALL SELECTION ============
+    function selectGumball(idea) {
+        selectedIdea = idea;
+        showPhase('phase-reveal');
+        document.getElementById('revealName').textContent = idea.name;
+        document.getElementById('revealText').textContent = `"${idea.slip_text}"`;
+    }
+
+    // ============ TYPED INPUT ============
+    async function handleTypedIdea() {
+        const input = document.getElementById('ideaInput').value.trim();
+        if (!input) return;
+
+        const btn = document.getElementById('submitIdea');
+        btn.disabled = true;
+        btn.textContent = 'Reachy is reading...';
+
+        try {
+            const res = await fetch('/api/match', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idea_text: input }),
+            });
+            const matched = await res.json();
+            selectedIdea = matched;
+
+            // Brief delay to simulate "robot reading"
+            await sleep(1200);
+
+            showPhase('phase-reveal');
+            document.getElementById('revealName').textContent = matched.name;
+            document.getElementById('revealText').textContent = `"${matched.slip_text}"`;
+        } catch (e) {
+            alert('Something went wrong. Please try again!');
+            console.error(e);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Feed to Reachy';
+        }
+    }
+
+    // ============ FACTORY (CODE GENERATION) ============
+    async function startFactory() {
+        if (!selectedIdea) return;
+
+        showPhase('phase-loading');
+        animateLoading();
+
+        try {
+            const res = await fetch('/api/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idea_text: selectedIdea.slip_text }),
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.detail || 'Generation failed');
+            }
+
+            const data = await res.json();
+            generatedHTML = data.generated_html;
+
+            // Finish progress bar
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('loadingMessage').textContent = 'Pure imagination realized!';
+
+            await sleep(800);
+            showResult(data);
+        } catch (e) {
+            alert('Factory malfunction! ' + e.message);
+            showPhase('phase-gumball');
+        }
+    }
+
+    function animateLoading() {
+        const bar = document.getElementById('progressBar');
+        const msg = document.getElementById('loadingMessage');
+        bar.style.width = '0%';
+
+        let progress = 0;
+        let msgIndex = 0;
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 8;
+            if (progress > 90) progress = 90; // Cap at 90, API response pushes to 100
+            bar.style.width = progress + '%';
+
+            if (Math.random() > 0.5 || msgIndex === 0) {
+                msg.textContent = LOADING_MESSAGES[msgIndex % LOADING_MESSAGES.length];
+                msgIndex++;
+            }
+        }, 1500);
+
+        // Store interval to clear later
+        window._loadingInterval = interval;
+    }
+
+    function showResult(data) {
+        if (window._loadingInterval) clearInterval(window._loadingInterval);
+
+        showPhase('phase-result');
+        document.getElementById('resultSubtitle').textContent =
+            `Your "${data.idea_name}" prototype is served!`;
+        document.getElementById('resultAppName').textContent = data.idea_name;
+
+        // Load generated HTML into iframe
+        const iframe = document.getElementById('resultIframe');
+        iframe.srcdoc = data.generated_html;
+    }
+
+    function openFullscreen() {
+        const win = window.open('', '_blank');
+        win.document.write(generatedHTML);
+        win.document.close();
+    }
+
+    function resetFactory() {
+        selectedIdea = null;
+        generatedHTML = '';
+        document.getElementById('ideaInput').value = '';
+        showPhase('phase-gumball');
+    }
+
+    function goBack() {
+        showPhase('phase-gumball');
+    }
+
+    // ============ HELPERS ============
+    function showPhase(phaseId) {
+        document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+        document.getElementById(phaseId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+</script>
+
+</body>
+</html>
