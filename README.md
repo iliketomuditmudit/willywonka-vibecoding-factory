@@ -12,6 +12,10 @@ A Willy Wonka themed experience where users pick a B2B SaaS idea from a gumball 
 ## Quick Start
 
 ```bash
+# Clone the repo and cd into it
+git clone https://github.com/iliketomuditmudit/willywonka-vibecoding-factory.git
+cd willywonka-vibecoding-factory
+
 # Install dependencies
 pip install -r requirements.txt
 
@@ -21,6 +25,9 @@ export ANTHROPIC_API_KEY="sk-ant-..."
 # Run the server
 uvicorn server:app --reload --port 8000
 ```
+
+> **Important:** You must run all commands from inside the `willywonka-vibecoding-factory` folder.
+> If you get "No such file or directory" or "Could not import module", run `cd willywonka-vibecoding-factory` first.
 
 Then open http://localhost:8000
 
