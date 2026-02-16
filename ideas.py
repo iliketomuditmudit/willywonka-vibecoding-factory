@@ -2,9 +2,9 @@
 20 B2B SaaS idea slips and their corresponding vibe-coding prompts.
 
 Each idea has:
-  - id: unique identifier (matches capsule ball number)
+  - id: unique identifier (matches paper slip number)
   - name: short catchy name for the idea
-  - slip_text: what's printed on the slip inside the gumball capsule
+  - slip_text: what's printed on the slip of paper
   - keywords: terms used for fuzzy matching when the idea is typed in
   - prompt: the full prompt sent to the code-generation API
 """
@@ -12,308 +12,301 @@ Each idea has:
 IDEAS = [
     {
         "id": 1,
-        "name": "MeetingShrink",
-        "slip_text": "An AI that summarizes your 1-hour meeting into 3 bullet points",
-        "keywords": ["meeting", "summarize", "summary", "bullet", "points", "notes", "recap"],
+        "name": "InvoiceTracker",
+        "slip_text": "Invoice tracking for freelancers",
+        "keywords": ["invoice", "freelancer", "tracking", "billing", "payment", "outstanding", "paid", "overdue"],
         "prompt": (
-            "Build a single-page web app called 'MeetingShrink'. "
-            "It has a large textarea where users paste meeting transcripts. "
-            "There's a big purple 'Shrink It!' button. When clicked, simulate an AI processing animation "
-            "(progress bar filling up with funny messages like 'Removing awkward silences...' and 'Deleting Dave's tangents...'), "
-            "then display 3 concise bullet-point takeaways in a card below. "
-            "Use a clean modern UI with a purple/white color scheme. Include the tagline 'Because nobody has time for that.' "
+            "Build a clean, minimal web app for freelancers to track invoices. "
+            "Include a dashboard showing total outstanding, total paid, and overdue invoices. "
+            "Add a form to create new invoices with fields for client name, amount, due date, and status (draft, sent, paid, overdue). "
+            "Use a table view to list all invoices with sorting and filtering. "
+            "Keep the color palette professional and muted, like a boring accounting tool. "
+            "Add a sidebar nav with sections for Dashboard, Invoices, and Clients. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 2,
-        "name": "InvoiceNinja",
-        "slip_text": "Auto-generate invoices from Slack messages",
-        "keywords": ["invoice", "slack", "billing", "payment", "generate", "auto"],
+        "name": "OnboardingChecklist",
+        "slip_text": "Employee onboarding checklist tool",
+        "keywords": ["onboarding", "employee", "checklist", "hr", "new hire", "orientation", "hiring"],
         "prompt": (
-            "Build a single-page web app called 'InvoiceNinja'. "
-            "It has a textarea labeled 'Paste your Slack conversation' and fields for client name, hourly rate, and currency. "
-            "A 'Generate Invoice' button parses the text, extracts mentioned tasks/hours, and renders a professional-looking invoice "
-            "with line items, subtotal, tax, and total in a printable card format. "
-            "Include a 'Download PDF' button (use window.print). "
-            "Use a dark ninja-themed color scheme (dark gray, red accents). "
+            "Create a web app for HR teams to manage employee onboarding checklists. "
+            "The main view shows a list of new hires with their name, start date, department, and a progress bar showing checklist completion. "
+            "Clicking a hire opens their checklist with items like 'Set up email,' 'Order laptop,' 'Schedule orientation,' each with a checkbox and assignee. "
+            "Include an admin view to create and edit checklist templates. "
+            "Use a corporate blue and gray color scheme. Make it look like enterprise software. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 3,
-        "name": "ChurnOracle",
-        "slip_text": "Predict which customers will cancel before they do",
-        "keywords": ["churn", "predict", "cancel", "customer", "retention", "oracle"],
+        "name": "ExpenseApproval",
+        "slip_text": "Expense report approval system",
+        "keywords": ["expense", "report", "approval", "reimburse", "receipt", "spending", "budget"],
         "prompt": (
-            "Build a single-page web app called 'ChurnOracle'. "
-            "Show a dashboard with a table of 10 fake customers, each with columns: name, signup date, last login, "
-            "support tickets, usage trend (sparkline), and a 'Churn Risk' score shown as a colored badge (green/yellow/red). "
-            "Include a donut chart at the top showing overall risk distribution. "
-            "Add a 'Run Prediction' button with a crystal ball animation. "
-            "Use mystical purple/gold color scheme. "
+            "Build an expense report approval workflow app. "
+            "Employees can submit expense reports with line items (date, category, amount, receipt upload placeholder). "
+            "Managers see a queue of pending reports to approve or reject with comments. "
+            "Include a dashboard with monthly spending by category in a bar chart. "
+            "Use a boring corporate design with lots of tables, gray backgrounds, and small text. "
+            "Add status badges: Pending (yellow), Approved (green), Rejected (red). "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 4,
-        "name": "OnboardBot",
-        "slip_text": "Employee onboarding that runs itself",
-        "keywords": ["onboard", "employee", "hr", "hiring", "new hire", "orientation", "bot"],
+        "name": "RoomBooker",
+        "slip_text": "Meeting room booking platform",
+        "keywords": ["meeting", "room", "booking", "calendar", "reserve", "office", "schedule"],
         "prompt": (
-            "Build a single-page web app called 'OnboardBot'. "
-            "Show a multi-step onboarding wizard for new employees with steps: Welcome, Personal Info, "
-            "Equipment Request, Team Introduction, First Week Schedule. "
-            "Each step has a form with relevant fields. Include a progress bar at the top, "
-            "a friendly robot mascot SVG that changes expression per step, and animated transitions between steps. "
-            "Use a warm blue/orange color scheme. "
+            "Create a meeting room booking system for an office. "
+            "Show a weekly calendar grid with rooms as rows and time slots as columns. "
+            "Rooms should have names like 'Synergy,' 'Innovation Lab,' and 'The Think Tank.' "
+            "Users can click a slot to book it with a meeting title and attendee count. "
+            "Include a sidebar showing today's bookings and room availability status. "
+            "Use a sterile, corporate design. Make it feel like something installed on every computer at a Fortune 500 company. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 5,
-        "name": "PipelinePulse",
-        "slip_text": "A sales pipeline that tells you what to do next",
-        "keywords": ["sales", "pipeline", "crm", "deals", "leads", "pulse"],
+        "name": "VendorCompliance",
+        "slip_text": "Vendor compliance tracker",
+        "keywords": ["vendor", "compliance", "audit", "risk", "contract", "tracker", "regulatory"],
         "prompt": (
-            "Build a single-page web app called 'PipelinePulse'. "
-            "Show a Kanban-style sales pipeline with columns: Prospect, Contacted, Demo Scheduled, Proposal Sent, Closed Won, Closed Lost. "
-            "Pre-populate with 8-10 fake deal cards (company name, value, days in stage). "
-            "Cards should be draggable between columns. Include a top banner with total pipeline value and a "
-            "'Next Best Action' recommendation card that suggests which deal to focus on. "
-            "Use a green/white financial color scheme. "
+            "Build a vendor compliance management dashboard. "
+            "Show a table of vendors with columns for name, compliance status (Compliant, At Risk, Non-Compliant), last audit date, contract expiry, and risk score. "
+            "Include filters by status and industry. "
+            "Add a detail view for each vendor showing their compliance history as a timeline. "
+            "Use a very serious, enterprise aesthetic with dark navy headers and lots of data density. "
+            "This should look like software nobody enjoys using. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 6,
-        "name": "FeedbackFunnel",
-        "slip_text": "Turn customer feedback into product features automatically",
-        "keywords": ["feedback", "feature", "customer", "product", "request", "funnel", "roadmap"],
+        "name": "TicketQueue",
+        "slip_text": "Customer support ticket queue",
+        "keywords": ["support", "ticket", "customer", "helpdesk", "queue", "priority", "service"],
         "prompt": (
-            "Build a single-page web app called 'FeedbackFunnel'. "
-            "Show a split-screen: left side has a feed of customer feedback cards (10 pre-populated fake quotes), "
-            "right side shows extracted feature requests grouped by theme with vote counts. "
-            "Include a 'Process Feedback' button with a funnel animation. "
-            "Each feature request card has an urgency badge and an 'Add to Roadmap' button. "
-            "Use a teal/white color scheme. "
+            "Create a customer support ticket management system. "
+            "Show an inbox-style list of tickets with subject, customer name, priority (Low, Medium, High, Urgent), "
+            "status (Open, In Progress, Resolved), and time since creation. "
+            "Include a detail panel that shows the conversation thread. "
+            "Add a sidebar with quick filters and a small chart showing tickets by status. "
+            "Use a bland, functional design. Make it look like Zendesk's less attractive cousin. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 7,
-        "name": "ContractCop",
-        "slip_text": "Scan contracts and flag the scary clauses",
-        "keywords": ["contract", "legal", "clause", "scan", "flag", "review", "cop"],
+        "name": "WarehouseInventory",
+        "slip_text": "Inventory management for warehouses",
+        "keywords": ["inventory", "warehouse", "stock", "sku", "reorder", "supply", "management"],
         "prompt": (
-            "Build a single-page web app called 'ContractCop'. "
-            "It has a textarea to paste contract text and a 'Scan Contract' button. "
-            "After clicking, show the contract text with highlighted sections: red for risky clauses, "
-            "yellow for unusual terms, green for standard clauses. "
-            "Show a sidebar with a risk summary, overall risk score (badge), and a list of flagged items with explanations. "
-            "Include a police badge icon in the header. "
-            "Use a navy/red/white color scheme. "
+            "Build a warehouse inventory management dashboard. "
+            "Show a searchable table of products with SKU, name, quantity in stock, reorder point, "
+            "location (Aisle-Shelf format like A3-12), and last restocked date. "
+            "Highlight rows where quantity is below reorder point in light red. "
+            "Include a summary bar at top showing total SKUs, low stock items, and items to reorder. "
+            "Use an industrial, no-nonsense design with monospace fonts for SKU numbers. Maximum boringness. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 8,
-        "name": "TicketTamer",
-        "slip_text": "Support tickets that categorize and prioritize themselves",
-        "keywords": ["ticket", "support", "helpdesk", "triage", "prioritize", "tamer", "customer support"],
+        "name": "ConsultantTimesheet",
+        "slip_text": "Time tracking for consultants",
+        "keywords": ["time", "tracking", "consultant", "timesheet", "hours", "billable", "utilization"],
         "prompt": (
-            "Build a single-page web app called 'TicketTamer'. "
-            "Show a support ticket dashboard with a submission form (subject, description, customer tier dropdown) "
-            "and a live ticket queue below. Pre-populate with 8 fake tickets. "
-            "Each ticket auto-gets a category badge (Bug, Feature, Billing, How-To) and priority (P1-P4) with color coding. "
-            "Include filter buttons at the top and a 'Tame the Queue' button that sorts/groups everything with an animation. "
-            "Use an orange/brown 'circus tamer' theme. "
+            "Create a time tracking app for consulting firms. "
+            "The main view is a weekly timesheet grid where consultants log hours per project per day. "
+            "Include a dropdown to select the project and a field for notes. "
+            "Show a weekly total and a monthly summary with hours by project in a pie chart. "
+            "Add an admin view showing all consultants and their utilization rates. "
+            "Use a beige and gray color scheme that makes you want to close the tab immediately. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 9,
-        "name": "ExpenseGhost",
-        "slip_text": "Expense reports that write themselves from receipts",
-        "keywords": ["expense", "receipt", "report", "reimburse", "ghost", "finance"],
+        "name": "SalesPipeline",
+        "slip_text": "Sales pipeline CRM dashboard",
+        "keywords": ["sales", "pipeline", "crm", "deals", "leads", "kanban", "forecast"],
         "prompt": (
-            "Build a single-page web app called 'ExpenseGhost'. "
-            "Show an expense report builder. Users can add expense entries with: date, vendor, amount, category dropdown "
-            "(Travel, Meals, Software, Office, Other), and notes. "
-            "Include an 'Add Receipt' button that simulates OCR (pre-fills random realistic data with a ghost animation). "
-            "Show a running total, category breakdown bar chart, and a 'Submit Report' button. "
-            "Use a translucent ghost-themed UI (light grays, ethereal glows). "
+            "Build a sales pipeline CRM. "
+            "Show a kanban board with columns: Lead, Qualified, Proposal, Negotiation, Closed Won, Closed Lost. "
+            "Each card shows company name, deal value, and contact person. "
+            "Include a sidebar with pipeline summary (total value per stage) and a forecast number. "
+            "Add a list view as an alternative to the kanban. "
+            "Use a generic SaaS blue and white design. "
+            "Include a motivational sales quote somewhere that no one will ever read. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 10,
-        "name": "StatusPageForge",
-        "slip_text": "A status page for your SaaS that actually looks good",
-        "keywords": ["status", "page", "uptime", "monitoring", "incident", "forge"],
+        "name": "ProjectStatus",
+        "slip_text": "Project status reporting tool",
+        "keywords": ["project", "status", "report", "milestone", "gantt", "portfolio", "tracking"],
         "prompt": (
-            "Build a single-page web app called 'StatusPageForge'. "
-            "Show a public-facing status page with 6 services (API, Web App, Database, CDN, Auth, Webhooks), "
-            "each with a 90-day uptime bar (green/yellow/red segments), current status badge, and response time. "
-            "Include an incident timeline at the bottom with 3 past incidents. "
-            "Add a 'Subscribe to Updates' email input and a real-time clock showing 'Last checked'. "
-            "Use a clean black/green/white color scheme. "
+            "Create a project status report generator. "
+            "Show a list of active projects with name, owner, status (On Track, At Risk, Delayed), percent complete, and next milestone. "
+            "Each project has a detail page with a Gantt-style timeline bar, a list of milestones, and a notes section. "
+            "Include a portfolio view that shows all projects as colored status dots on a grid. "
+            "Make it look like management consulting software. Gray everywhere. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 11,
-        "name": "ProposalPilot",
-        "slip_text": "Generate client proposals in 30 seconds",
-        "keywords": ["proposal", "client", "generate", "pitch", "bid", "pilot"],
+        "name": "PTOManager",
+        "slip_text": "Employee PTO request system",
+        "keywords": ["pto", "vacation", "leave", "time off", "request", "approval", "absence"],
         "prompt": (
-            "Build a single-page web app called 'ProposalPilot'. "
-            "Show a form with fields: client name, project type dropdown, scope description textarea, timeline, and budget range. "
-            "A 'Generate Proposal' button creates a polished proposal preview with sections: Executive Summary, "
-            "Scope of Work, Timeline, Pricing Table, and Terms. "
-            "Include a 'flying paper airplane' animation during generation. "
-            "The proposal should look print-ready with professional typography. "
-            "Use a sky blue/white color scheme. "
+            "Build a PTO (paid time off) request and approval system. "
+            "Employees see their remaining PTO balance, a calendar showing their approved and pending days, and a form to submit new requests. "
+            "Managers see a team calendar and a list of pending requests to approve or deny. "
+            "Include a policy section showing accrual rates. "
+            "Use the most generic corporate design possible with a teal accent color that was clearly picked by committee. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 12,
-        "name": "AnalyticsOwl",
-        "slip_text": "A dashboard that explains your metrics in plain English",
-        "keywords": ["analytics", "dashboard", "metrics", "data", "insights", "owl", "explain"],
+        "name": "ContractManager",
+        "slip_text": "Contract lifecycle management",
+        "keywords": ["contract", "legal", "lifecycle", "expiry", "renewal", "management", "agreement"],
         "prompt": (
-            "Build a single-page web app called 'AnalyticsOwl'. "
-            "Show a metrics dashboard with: MRR ($45,200), Active Users (12,340), Churn Rate (3.2%), NPS (72). "
-            "Each metric card has a sparkline trend, percentage change badge, and an owl icon. "
-            "Below each metric, show a plain-English insight (e.g., 'Your MRR grew 12% this month, mainly from Enterprise tier upgrades'). "
-            "Include a 'Hoot for Insights' button that refreshes the commentary with a wise owl animation. "
-            "Use a dark navy/amber/white color scheme. "
+            "Create a contract management system. "
+            "Show a table of contracts with title, counterparty, value, start date, end date, and status (Draft, In Review, Active, Expired). "
+            "Include an alert section for contracts expiring in the next 30 days. "
+            "Add a detail view with key terms summary and a timeline of status changes. "
+            "Use a legal-profession aesthetic: dark backgrounds, serif fonts for contract titles, "
+            "and an overwhelming amount of information density. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 13,
-        "name": "ColdMailCraft",
-        "slip_text": "Write cold outreach emails that people actually open",
-        "keywords": ["cold", "email", "outreach", "mail", "sales email", "craft"],
+        "name": "ITAssetTracker",
+        "slip_text": "IT asset tracking spreadsheet app",
+        "keywords": ["asset", "it", "device", "laptop", "tracking", "inventory", "hardware", "warranty"],
         "prompt": (
-            "Build a single-page web app called 'ColdMailCraft'. "
-            "Show a form with: recipient role, company, pain point, your product name, and tone selector (Professional/Casual/Bold). "
-            "A 'Craft Email' button generates 3 email variations displayed as actual email previews with subject lines. "
-            "Each variation has a predicted open rate badge and a 'Copy' button. "
-            "Include A/B testing visuals showing which variant performs better. "
-            "Use a red/dark-gray email client aesthetic. "
+            "Build an IT asset tracking tool. "
+            "Show a table of devices with asset tag, type (Laptop, Monitor, Phone), assigned employee, "
+            "purchase date, warranty expiry, and condition (New, Good, Fair, Needs Replacement). "
+            "Include filters by type and department. "
+            "Add a summary showing total assets by type and a count of warranty expirations this quarter. "
+            "Design it to look exactly like someone rebuilt a spreadsheet as a web app because their manager asked them to. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 14,
-        "name": "PermissionPretzel",
-        "slip_text": "Untangle your team's permissions and access controls",
-        "keywords": ["permission", "access", "role", "rbac", "iam", "pretzel", "security"],
+        "name": "OKRDashboard",
+        "slip_text": "Quarterly OKR tracking dashboard",
+        "keywords": ["okr", "objectives", "key results", "quarterly", "goals", "tracking", "progress"],
         "prompt": (
-            "Build a single-page web app called 'PermissionPretzel'. "
-            "Show a visual access control matrix: rows are 6 team members (with avatars), columns are 8 resources "
-            "(Dashboard, Billing, API Keys, Users, Settings, Reports, Integrations, Logs). "
-            "Each cell is a clickable toggle (Read/Write/Admin/None) with color coding. "
-            "Include role presets (Admin, Editor, Viewer) that fill the matrix with one click. "
-            "Show a 'twisted pretzel' logo and an 'Untangle' button that identifies conflicts. "
-            "Use a warm brown/yellow pretzel theme. "
+            "Create an OKR (Objectives and Key Results) tracking dashboard. "
+            "Show objectives as expandable cards, each containing 3-4 key results with progress bars and current vs target values. "
+            "Include a team filter and a quarter selector. "
+            "Add a summary section showing overall company progress as a percentage. "
+            "Use red/yellow/green color coding for progress status. "
+            "Make it look like the kind of tool that gets mandated company-wide but only 30% of employees actually update. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 15,
-        "name": "ChangelogGenie",
-        "slip_text": "Auto-generate changelogs from your Git commits",
-        "keywords": ["changelog", "git", "release", "notes", "version", "genie"],
+        "name": "ShippingDashboard",
+        "slip_text": "Shipping logistics coordinator",
+        "keywords": ["shipping", "logistics", "tracking", "delivery", "shipment", "carrier", "transit"],
         "prompt": (
-            "Build a single-page web app called 'ChangelogGenie'. "
-            "Show a textarea to paste Git commit messages and a version number input. "
-            "A 'Summon Changelog' button (with a lamp/genie animation) generates a formatted changelog grouped by: "
-            "Features, Bug Fixes, Improvements, Breaking Changes. "
-            "Each entry has a commit hash link, author badge, and date. "
-            "Include a toggle between 'Developer' and 'Customer-facing' versions of the changelog. "
-            "Use a magical purple/gold color scheme. "
+            "Build a shipping logistics dashboard. "
+            "Show a table of shipments with tracking number, origin, destination, carrier, "
+            "status (Preparing, In Transit, Delivered, Delayed), and ETA. "
+            "Include a map placeholder showing shipment routes. "
+            "Add filters by status and date range. "
+            "Show KPIs at top: shipments this month, on-time delivery rate, average transit time. "
+            "Use a utilitarian design with lots of data tables and small fonts. Logistics software energy. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 16,
-        "name": "APIPlayground",
-        "slip_text": "Test any API endpoint without writing code",
-        "keywords": ["api", "test", "endpoint", "rest", "request", "playground", "postman"],
+        "name": "BillingManager",
+        "slip_text": "SaaS subscription billing manager",
+        "keywords": ["subscription", "billing", "saas", "mrr", "churn", "revenue", "payment"],
         "prompt": (
-            "Build a single-page web app called 'APIPlayground'. "
-            "Show a Postman-style interface with: method selector (GET/POST/PUT/DELETE), URL input, "
-            "headers table (key-value pairs with add/remove), body editor (JSON with syntax highlighting), "
-            "and a 'Send' button. Display the response in a panel below with status code badge, "
-            "response time, formatted JSON body, and response headers. "
-            "Include a history sidebar with recent requests. "
-            "Use a dark theme with green/blue accents. "
+            "Create a subscription billing management tool. "
+            "Show a list of customers with name, plan tier (Starter, Pro, Enterprise), MRR, billing cycle, "
+            "and payment status (Current, Past Due, Churned). "
+            "Include a revenue dashboard with MRR over time line chart and churn rate. "
+            "Add a detail view per customer showing billing history and plan changes. "
+            "Use a fintech-adjacent design that tries too hard to look modern but still feels like accounting software. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 17,
-        "name": "WaitlistWizard",
-        "slip_text": "A beautiful waitlist page that builds hype before launch",
-        "keywords": ["waitlist", "launch", "landing", "signup", "hype", "wizard", "prelaunch"],
+        "name": "SurveyBuilder",
+        "slip_text": "Employee feedback survey builder",
+        "keywords": ["survey", "feedback", "employee", "questionnaire", "poll", "hr", "engagement"],
         "prompt": (
-            "Build a single-page web app called 'WaitlistWizard'. "
-            "Show a stunning pre-launch landing page with: big hero headline ('Something magical is coming'), "
-            "animated countdown timer, email signup with referral tracking (shows your position: #142 of 2,847), "
-            "social sharing buttons that promise queue jumping, a progress bar showing 'spots remaining', "
-            "and an animated background with floating sparkles. "
-            "Include testimonial-style social proof ('2,847 founders already waiting'). "
-            "Use a gradient purple-to-blue color scheme with white text. "
+            "Build an employee feedback survey tool. "
+            "Include a survey builder where admins drag and drop question types (multiple choice, rating scale, free text). "
+            "Show a list of active and past surveys with response rates. "
+            "Add a results view with bar charts for each question. "
+            "Use the most corporate, inoffensive design possible. "
+            "Include a stock photo placeholder of diverse coworkers smiling in a conference room. Peak HR software aesthetics. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 18,
-        "name": "TeamPulse",
-        "slip_text": "Daily standups without the standing up part",
-        "keywords": ["standup", "team", "daily", "async", "pulse", "check-in", "status update"],
+        "name": "PipelineMonitor",
+        "slip_text": "Data pipeline monitoring dashboard",
+        "keywords": ["pipeline", "data", "monitoring", "etl", "dashboard", "engineering", "jobs"],
         "prompt": (
-            "Build a single-page web app called 'TeamPulse'. "
-            "Show a daily async standup board. Left side: a form with 'Yesterday', 'Today', 'Blockers' textareas and mood selector (5 emojis). "
-            "Right side: a timeline feed showing 6 pre-populated team member updates with avatars, timestamps, and mood indicators. "
-            "Include a team mood summary at the top (emoji distribution chart) and a 'Blockers Alert' section highlighting who's stuck. "
-            "Use a calming green/white color scheme. "
+            "Create a data pipeline monitoring dashboard. "
+            "Show a list of pipelines with name, last run time, status (Success, Failed, Running), duration, and records processed. "
+            "Include a detail view with a log output section and error messages. "
+            "Add a chart showing pipeline success rate over the past 30 days. "
+            "Use a dark theme with green for success and red for failure, like a terminal. "
+            "Make it feel like software that only the data engineering team understands. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 19,
-        "name": "PricingLab",
-        "slip_text": "A/B test your SaaS pricing page without a developer",
-        "keywords": ["pricing", "ab test", "tier", "plan", "subscription", "lab"],
+        "name": "FilingTracker",
+        "slip_text": "Regulatory filing deadline tracker",
+        "keywords": ["regulatory", "filing", "deadline", "compliance", "government", "legal", "regulation"],
         "prompt": (
-            "Build a single-page web app called 'PricingLab'. "
-            "Show a pricing page builder with 3 editable tier cards (Starter, Pro, Enterprise). "
-            "Each card has: editable name, price, billing toggle (monthly/yearly), feature list (add/remove), "
-            "and a CTA button. Include a 'Variant B' tab to create an alternate version. "
-            "Show a simulated A/B test results panel with conversion rates, confidence interval, and a winner badge. "
-            "Include a 'Run Experiment' button with a beaker animation. "
-            "Use a lab/science theme (white, blue, slight green). "
+            "Build a regulatory compliance filing tracker. "
+            "Show a calendar view of upcoming filing deadlines with jurisdiction, filing type, responsible person, and days until due. "
+            "Include a table view with filters by regulation type and status (Not Started, In Progress, Filed, Overdue). "
+            "Add email reminder settings. "
+            "Use an extremely serious design with government-website energy. "
+            "Dark blue headers, Times New Roman vibes, zero personality. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
     {
         "id": 20,
-        "name": "DocuMentor",
-        "slip_text": "Turn your codebase into documentation automatically",
-        "keywords": ["documentation", "docs", "code", "generate", "readme", "mentor", "docstring"],
+        "name": "InvoiceReconciler",
+        "slip_text": "Vendor invoice reconciliation tool",
+        "keywords": ["reconciliation", "invoice", "vendor", "purchase order", "matching", "accounting", "discrepancy"],
         "prompt": (
-            "Build a single-page web app called 'DocuMentor'. "
-            "Show a split-screen: left has a code editor (monospace textarea with line numbers) pre-filled with a Python class, "
-            "right shows generated documentation in a clean format with: function signatures, parameter tables, "
-            "return types, usage examples, and a complexity badge. "
-            "Include a 'Generate Docs' button with a book-opening animation. "
-            "Add toggles for output format: Markdown, HTML, or Docstring. "
-            "Use a warm paper/ink color scheme (cream background, dark text, brown accents). "
+            "Create a vendor invoice reconciliation app. "
+            "Show a split view: purchase orders on the left, invoices on the right. "
+            "Users match invoices to POs and flag discrepancies. "
+            "Include a summary showing total matched, unmatched, and discrepancy value. "
+            "Add filters by vendor and date range. "
+            "Use the driest possible accounting aesthetic: light gray everything, thin borders, "
+            "and number formats with two decimal places. The kind of tool that makes you question your career choices. "
             "Make it fully functional with HTML, CSS, and JavaScript in a single file."
         ),
     },
@@ -327,7 +320,6 @@ def find_best_match(user_input: str) -> dict:
     Returns the best matching idea dict.
     """
     user_words = set(user_input.lower().split())
-    # Also check for substring matches in the full input
     user_lower = user_input.lower()
 
     best_score = -1
@@ -340,7 +332,6 @@ def find_best_match(user_input: str) -> dict:
         for kw in idea["keywords"]:
             if kw in user_lower:
                 score += 3
-            # Partial word match
             for word in user_words:
                 if word in kw or kw in word:
                     score += 1

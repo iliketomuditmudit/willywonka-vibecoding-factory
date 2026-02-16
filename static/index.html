@@ -16,7 +16,6 @@
             --wonka-green: #2E7D4F;
             --wonka-red: #C0392B;
             --wonka-pink: #E8A0BF;
-            --gumball-size: 50px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -105,92 +104,6 @@
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ============ GUMBALL MACHINE ============ */
-        .gumball-machine {
-            text-align: center;
-            margin: 20px auto;
-        }
-        .machine-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        .machine-globe {
-            width: 320px;
-            height: 340px;
-            background: radial-gradient(circle at 40% 35%, rgba(255,255,255,0.5), rgba(255,255,255,0.05));
-            border: 6px solid #888;
-            border-radius: 50% 50% 10% 10%;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            gap: 6px;
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.2);
-        }
-        .gumball {
-            width: var(--gumball-size);
-            height: var(--gumball-size);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.2), inset 3px 3px 8px rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.9);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            animation: gumballBob ease-in-out infinite;
-        }
-        .gumball:hover {
-            transform: scale(1.2);
-            z-index: 10;
-            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.2), inset 3px 3px 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.5);
-        }
-        @keyframes gumballBob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-        .machine-base {
-            width: 200px;
-            height: 80px;
-            background: linear-gradient(to bottom, #C0392B, #922B21);
-            margin: -10px auto 0;
-            border-radius: 5px 5px 15px 15px;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .machine-base::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background: var(--wonka-gold);
-            border-radius: 50%;
-            border: 3px solid var(--wonka-brown);
-            box-shadow: 0 0 10px rgba(212,160,23,0.5);
-        }
-        .machine-label {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--wonka-purple);
-            margin-top: 20px;
-            font-weight: 700;
-        }
-        .machine-sublabel {
-            font-family: 'Lora', serif;
-            font-style: italic;
-            color: #888;
-            margin-top: 5px;
         }
 
         /* ============ IDEA REVEAL PHASE ============ */
@@ -487,8 +400,6 @@
         /* ============ RESPONSIVE ============ */
         @media (max-width: 600px) {
             header h1 { font-size: 2rem; }
-            .machine-globe { width: 260px; height: 280px; padding: 20px; }
-            .gumball { width: 40px; height: 40px; font-size: 0.6rem; }
             .golden-ticket { padding: 25px; }
             .golden-ticket h2 { font-size: 1.4rem; }
             .golden-ticket .idea-name { font-size: 1.5rem; }
@@ -509,27 +420,16 @@
 
 <div class="container">
 
-    <!-- ========== PHASE 1: Gumball Machine ========== -->
+    <!-- ========== PHASE 1: Text Input ========== -->
     <div class="phase active" id="phase-gumball">
-        <div class="gumball-machine">
-            <div class="machine-wrapper">
-                <div class="machine-globe" id="gumballGlobe">
-                    <!-- Gumballs injected by JS -->
-                </div>
-                <div class="machine-base"></div>
-            </div>
-            <div class="machine-label">Pick Your Idea From the Machine!</div>
-            <div class="machine-sublabel">Click a gumball to reveal your B2B SaaS destiny</div>
-        </div>
-
         <div class="input-section">
-            <h3>...or Tell Reachy Your Idea</h3>
-            <p>Describe your idea and our robot will find the closest match</p>
+            <h3>What Did Reachy Read?</h3>
+            <p>Type what the robot read from the paper slip</p>
             <input type="text" class="idea-input" id="ideaInput"
-                   placeholder="e.g. A tool that summarizes meetings...">
+                   placeholder="e.g. Invoice tracking for freelancers...">
             <br>
             <button class="btn btn-purple" id="submitIdea" onclick="handleTypedIdea()">
-                Feed to Reachy
+                Feed to Factory
             </button>
         </div>
     </div>
@@ -605,16 +505,8 @@
 
 <script>
     // ============ STATE ============
-    let allIdeas = [];
     let selectedIdea = null;
     let generatedHTML = '';
-
-    const GUMBALL_COLORS = [
-        '#E74C3C', '#3498DB', '#2ECC71', '#F39C12', '#9B59B6',
-        '#1ABC9C', '#E67E22', '#E84393', '#0984E3', '#6C5CE7',
-        '#00B894', '#FDCB6E', '#E17055', '#74B9FF', '#A29BFE',
-        '#FF7675', '#55EFC4', '#FFEAA7', '#DDA0DD', '#81ECEC',
-    ];
 
     const LOADING_MESSAGES = [
         "Mixing the chocolate rivers of code...",
@@ -634,7 +526,6 @@
     // ============ INIT ============
     document.addEventListener('DOMContentLoaded', () => {
         createCandyBackground();
-        loadIdeas();
 
         // Enter key on input
         document.getElementById('ideaInput').addEventListener('keydown', (e) => {
@@ -657,41 +548,6 @@
         }
     }
 
-    async function loadIdeas() {
-        try {
-            const res = await fetch('/api/ideas');
-            allIdeas = await res.json();
-            renderGumballs();
-        } catch (e) {
-            console.error('Failed to load ideas:', e);
-            // Fallback: still allow typed input
-        }
-    }
-
-    function renderGumballs() {
-        const globe = document.getElementById('gumballGlobe');
-        globe.innerHTML = '';
-        allIdeas.forEach((idea, i) => {
-            const ball = document.createElement('div');
-            ball.className = 'gumball';
-            ball.style.backgroundColor = GUMBALL_COLORS[i % GUMBALL_COLORS.length];
-            ball.style.animationDuration = (2 + Math.random() * 2) + 's';
-            ball.style.animationDelay = (Math.random() * 2) + 's';
-            ball.title = 'Click to pick this idea!';
-            ball.textContent = idea.id;
-            ball.onclick = () => selectGumball(idea);
-            globe.appendChild(ball);
-        });
-    }
-
-    // ============ GUMBALL SELECTION ============
-    function selectGumball(idea) {
-        selectedIdea = idea;
-        showPhase('phase-reveal');
-        document.getElementById('revealName').textContent = idea.name;
-        document.getElementById('revealText').textContent = `"${idea.slip_text}"`;
-    }
-
     // ============ TYPED INPUT ============
     async function handleTypedIdea() {
         const input = document.getElementById('ideaInput').value.trim();
@@ -699,7 +555,7 @@
 
         const btn = document.getElementById('submitIdea');
         btn.disabled = true;
-        btn.textContent = 'Reachy is reading...';
+        btn.textContent = 'Matching idea...';
 
         try {
             const res = await fetch('/api/match', {
@@ -721,7 +577,7 @@
             console.error(e);
         } finally {
             btn.disabled = false;
-            btn.textContent = 'Feed to Reachy';
+            btn.textContent = 'Feed to Factory';
         }
     }
 
